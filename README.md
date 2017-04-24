@@ -70,9 +70,9 @@ Right:
 A steering angle correction factor of 0.2 was added to the left and subtracted from the right image steering angles.  A flipped image and steeting angle were appended to the dataset to mediate the tendancy of a turning bias. The image was flipped to provide a mirror image.  To flip the angle, the original angle was simply multiplied by a -1. This flipping of the images and angles proved to have the most significant effect of the data augmentation techniques.
 
 Original:
-<img src="./images/original.png?raw=true" width="200px">
+<img src="./images/original.jpg?raw=true" width="200px">
 Flipped:
-<img src="./images/flipped.png?raw=true" width="200px">
+<img src="./images/flipped.jpg?raw=true" width="200px">
 
 
 The image and steering angle data was split into a training and validation set. Of the original dataset, 20% was used exclusively for validation.  Data shuffling was used for both training and validation sets to further reduce overfitting.
@@ -84,9 +84,9 @@ I used this training data for training the model. The validation set helped dete
 Image cropping was used after it was determined that much of the image data above the horizon was unnecessary as well as lower section of the image that contained part of the body of the vehicle. The images are then resized, since the Nvidia architecture requires image input with a size of 200px by 66px.
 
 Original:
-<img src="./images/original.png?raw=true" width="200px">
+<img src="./images/original.jpg?raw=true" width="200px">
 Cropped:
-<img src="./images/cropped.png?raw=true" width="200px">
+<img src="./images/cropped.jpg?raw=true" width="200px">
 
 Images were converted from RGB to YUV, this was done mostly based on the Nvidia results.  The simulator outputs images in RBG as well as takes in RGB as input, and opencv (cv2) reads images in BGR.  Since the model converts this to YUV, the drive.py file was edited to convert the YUV images.
 

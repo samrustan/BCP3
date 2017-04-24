@@ -15,25 +15,25 @@ Summary of project goals:
 
 ## Rubric Points
 
-####Files Submitted & Code Quality
+#### Files Submitted & Code Quality
 
-####1. Submission includes:
+#### 1. Submission includes:
 This project includes the following files:
 * model.py containing the script to create and train the model
 * drive.py for driving the car in autonomous mode
 * model.h5 containing a trained convolution neural network
 * writeup_report.md 
 
-####2. Functional code
+#### 2. Functional code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
 python drive.py model.h5
 ```
 
-####3. Code is usable and readable
+#### 3. Code is usable and readable
 The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
 
-###Model Architecture
+### Model Architecture
 ---
 The model used in this project is based on the model architecture published by Nvidia for training their self-driving car. The Nvidia "End-to-End" architecture is available [here](https://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf). The following shows the model layers of the Nvidia model. 
 
@@ -41,8 +41,8 @@ The model used in this project is based on the model architecture published by N
 
 The model used in this project is summarized here:
 * Data normalization using a Keras Lambda function such that all pixels values range from -1 to 1
-* Three 5x5 convolution layers with 2X2 striding (subsampling)
-* Two 3x3 convolution layers
+* Three 5x5 convolution layers with a 2x2 stride (subsampling)
+* Two 3x3 convolution layers 
 * Three fully-connected layers with output depths of 100, 50, 10
 * ELU activation is used for each convolution and fully connected layer
 * L2 regularization (added after initial training runs)
@@ -51,7 +51,8 @@ The model used in this project is summarized here:
 The training dataset was supplied by Udacity, additionally training data for lane-edge recovery was collected using the recording function of the simulator.
 
 The model was initally trained with only center images and steering angles with no augmentation. A validation set of 20% was used for validation. Training the network over about 10 epochs showed that the model had a low loss (MSE) on the training set but a high loss on the validation set. This implied that the model was likely overfitting. Data augmentation was used in the generator to mediate the overfitting. After data augmentation, the losses showed improvement as the validation loss was now improved.  The training epochs were reduced to 5 as the loss seemed to oscillate for additional epochs.
-Training Strategy
+
+### Training Strategy
 ---
 
 ### Data Collection and augmentation
@@ -73,7 +74,6 @@ Original:
 Flipped:
 <img src="./images/flipped.png?raw=true" width="200px">
 
-
 The image and steering angle data was split into a training and validation set. Of the original dataset, 20% was used exclusively for validation.  Data shuffling was used for both training and validation sets to further reduce overfitting.
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 5. I used an adam optimizer so that manually training the learning rate wasn’t necessary.
@@ -83,19 +83,15 @@ I used this training data for training the model. The validation set helped dete
 Image cropping was used after it was determined that much of the image data above the horizon was unnecessary as well as lower section of the image that contained part of the body of the vehicle. The images are then resized, since the Nvidia architecture requires image input with a size of 200px by 66px.
 
 Original:
-<img src="./Images/origional.png?raw=true" width="200px">
+<img src="./Images/original.png?raw=true" width="200px">
 Cropped:
 <img src="./Images/cropped.png?raw=true" width="200px">
 
-
 Images were converted from RGB to YUV, this was done mostly based on the Nvidia results.  The simulator outputs images in RBG as well as takes in RGB as input, and opencv (cv2) reads images in BGR.  Since the model converts this to YUV, the drive.py file was edited to convert the YUV images.
 
-Conclusion
+### Conclusion
 ---
 
 Using the trained model, the vehicle was able to traverse a full track without going off the road.  Only one lap was recorded for video file size and rubric requirement purposes, but several laps were run without issue.  Using the Keras framework proved to be a method that would lend itself to fast prototyping a network.
 
 This project is really where the rubber hit the road for me.  I learned a great deal about how the quality of the data really affects the performance of the DNN model.  And not just performance based on MSE or loss, but the performance of the desired effect or outcome of the applied DNN.  There is a bit of common sense to this if you consider the anaology of trying to learn a language with a dictionary full of misspelled words.  For this project, watching the model perform on different datasets was most enlightening.
-
-
-

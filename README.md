@@ -51,7 +51,8 @@ The model used in this project is summarized here:
 The training dataset was supplied by Udacity, additionally training data for lane-edge recovery was collected using the recording function of the simulator.
 
 The model was initally trained with only center images and steering angles with no augmentation. A validation set of 20% was used for validation. Training the network over about 10 epochs showed that the model had a low loss (MSE) on the training set but a high loss on the validation set. This implied that the model was likely overfitting. Data augmentation was used in the generator to mediate the overfitting. After data augmentation, the losses showed improvement as the validation loss was now improved.  The training epochs were reduced to 5 as the loss seemed to oscillate for additional epochs.
-Training Strategy
+
+### Training Strategy
 ---
 
 ### Data Collection and augmentation

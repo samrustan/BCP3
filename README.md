@@ -83,7 +83,7 @@ I used this training data for training the model. The validation set helped dete
 Image cropping was used after it was determined that much of the image data above the horizon was unnecessary as well as lower section of the image that contained part of the body of the vehicle. The images are then resized, since the Nvidia architecture requires image input with a size of 200px by 66px.
 
 Original:
-<img src="./images/origional.png?raw=true" width="200px">
+<img src="./images/original.png?raw=true" width="200px">
 Cropped:
 <img src="./images/cropped.png?raw=true" width="200px">
 

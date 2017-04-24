@@ -85,7 +85,7 @@ Image cropping was used after it was determined that much of the image data abov
 Original:
 <img src="./images/original.jpg?raw=true" width="200px">
 Cropped:
-<img src="./images/cropped.png?raw=true" width="200px">
+<img src="./images/cropped.jpg?raw=true" width="200px">
 
 Images were converted from RGB to YUV, this was done mostly based on the Nvidia results.  The simulator outputs images in RBG as well as takes in RGB as input, and opencv (cv2) reads images in BGR.  Since the model converts this to YUV, the drive.py file was edited to convert the YUV images.
 

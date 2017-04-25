@@ -1,8 +1,6 @@
-import os
 import csv
 import cv2
 import numpy as np
-import sklearn
 from sklearn.utils import shuffle
 from sklearn.model_selection import train_test_split
 # imports for model

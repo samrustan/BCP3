@@ -2,6 +2,7 @@ import os
 import csv
 import cv2
 import numpy as np
+import sklearn
 from sklearn.utils import shuffle
 from sklearn.model_selection import train_test_split
 # imports for model
@@ -37,9 +38,9 @@ def generator(samples, batch_size=32):
                 # there are 3 camera views center, left, right
                 for camera_view in range(3):
                     source_path = batch_sample[camera_view]
-                    filename = source_path.split('/')[-1] 
-                    IMG_dir = source_path.split('/')[-2] + '/'
                     data_type_dir = source_path.split('/')[-3] + '/'
+                    IMG_dir = source_path.split('/')[-2] + '/'
+                    filename = source_path.split('/')[-1]
                     current_path = image_dir + data_type_dir + IMG_dir + filename
                     image = cv2.imread(current_path)
                     processed_image = preprocess_image(image)
@@ -60,7 +61,7 @@ def generator(samples, batch_size=32):
             X_train = np.array(images)
             y_train = np.array(steering_angles)
 
-#            yield sklearn.utils.shuffle(X_train, y_train)
+            yield sklearn.utils.shuffle(X_train, y_train)
 
 # read in data from csv file
 samples = []
@@ -73,9 +74,6 @@ with open('data2/recovery/driving_log.csv') as recovery_data:
     reader = csv.reader(recovery_data)
     for line in reader:
         samples.append(line)
-
-
-
 
 # split into training and validation sets
 train_samples, validation_samples= train_test_split(samples, test_size=0.2)

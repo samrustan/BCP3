@@ -11,15 +11,6 @@ from keras.layers.advanced_activations import ELU
 from keras.callbacks import ModelCheckpoint, Callback
 from keras.regularizers import l2
 
-samples = []
-# read in data from csv file skipping the first line
-with open('data/driving_log.csv') as csvfile:
-    reader = csv.reader(csvfile)
-    skipline = 0
-    for line in reader:
-        if skipline > 0 :
-            samples.append(line)
-        skipline += 1
 
 def preprocess_image(img):
     new_img = img[50:140,:,:]
@@ -27,7 +18,6 @@ def preprocess_image(img):
     new_img = cv2.cvtColor(new_img, cv2.COLOR_BGR2YUV)
     return new_img
 
-train_samples, validation_samples= train_test_split(samples, test_size=0.2)
 
 def generator(samples, batch_size=32):
     num_samples = len(samples)
@@ -66,8 +56,20 @@ def generator(samples, batch_size=32):
             y_train = np.array(steering_angles)
 
             yield sklearn.utils.shuffle(X_train, y_train)
-	
-# create the training and validation generator objects 
+
+# read in data from csv file skipping the first line
+samples = []
+with open('data/driving_log.csv') as csvfile:
+    reader = csv.reader(csvfile)
+    skipline = 0
+    for line in reader:
+        if skipline > 0 :
+            samples.append(line)
+        skipline += 1
+
+# split into training and validation sets
+train_samples, validation_samples= train_test_split(samples, test_size=0.2)
+# create the training and validation generator objects
 train_generator = generator(train_samples, batch_size= 32)
 validation_generator = generator(validation_samples, batch_size=32)
 

@@ -22,6 +22,7 @@ This project includes the following files:
 * model.py containing the script to create and train the model
 * drive.py for driving the car in autonomous mode
 * model.h5 containing a trained convolution neural network
+* output_file.mp4, a video of the result of a full lap on track 1
 * writeup_report.md 
 
 #### 2. Functional code

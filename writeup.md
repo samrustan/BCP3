@@ -77,7 +77,7 @@ Flipped:
 
 The image and steering angle data was split into a training and validation set. Of the original dataset, 20% was used exclusively for validation.  Data shuffling was used for both training and validation sets to further reduce overfitting.
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 5. I used an adam optimizer so that manually training the learning rate wasn’t necessary.
+The total data for training data (images and steering angles) was 44,790 samples per epoch. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 5. I used an adam optimizer so that manually training the learning rate wasn’t necessary.
 
 ### Data Processing
 
